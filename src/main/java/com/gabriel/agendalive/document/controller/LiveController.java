@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gabriel.agendalive.document.LiveDocument;
 import com.gabriel.agendalive.document.service.LiveService;
 
-@CrossOrigin(origins = "*") // habilitar acesso aos recursos a qualquer origem
+@CrossOrigin(origins = "*") // liberar todos os dominios para acessar minha api
 @RestController
 public class LiveController {
 
