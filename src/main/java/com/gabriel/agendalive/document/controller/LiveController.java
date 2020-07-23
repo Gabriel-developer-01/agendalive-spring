@@ -49,7 +49,7 @@ public class LiveController {
     @PostMapping("/lives")
     public ResponseEntity<LiveDocument> saveLive(@RequestBody @Validated LiveDocument live) {
         live.setRegistrationDate(LocalDateTime.now());
-        live.setLiveDate(LocalDateTime.now());
+        //live.setLiveDate(LocalDateTime.now());
         return new ResponseEntity<LiveDocument>(liveService.save(live), HttpStatus.CREATED);
     }
 
