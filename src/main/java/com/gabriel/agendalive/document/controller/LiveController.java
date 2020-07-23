@@ -11,6 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gabriel.agendalive.document.LiveDocument;
 import com.gabriel.agendalive.document.service.LiveService;
 
+@CrossOrigin(origins = "*") // habilitar acesso aos recursos a qualquer origem
 @RestController
 public class LiveController {
 
@@ -30,9 +32,7 @@ public class LiveController {
 	LiveService liveService;
 
 	@GetMapping("/lives")
-	public ResponseEntity<Page<LiveDocument>> getAllLives(
-			@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable,
-			@RequestParam(required = false) String date) {
+	public ResponseEntity<Page<LiveDocument>> getAllLives(@PageableDefault(page = 0, size = 10, sort = "id", direction = Sort.Direction.ASC) Pageable pageable, @RequestParam(required = false) String date) {
 		Page<LiveDocument> livePage = liveService.findAll(pageable, date);
 		if (livePage.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
