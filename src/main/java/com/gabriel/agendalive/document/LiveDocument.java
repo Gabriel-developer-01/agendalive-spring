@@ -1,8 +1,6 @@
 package com.gabriel.agendalive.document;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,8 +12,7 @@ public class LiveDocument {
     private String id;
     private String liveName;
     private String channelName;
-    private LocalDate liveDate;
-    private LocalTime liveTime;
+    private LocalDateTime liveDate;
     private String liveLink;
     private LocalDateTime registrationDate;
 
@@ -43,21 +40,13 @@ public class LiveDocument {
         this.channelName = channelName;
     }
 
-    public LocalDate getLiveDate() {
+    public LocalDateTime getLiveDate() {
         return liveDate;
     }
 
-    public void setLiveDate(LocalDate liveDate) {
+    public void setLiveDate(LocalDateTime liveDate) {
         this.liveDate = liveDate;
     }
-    
-    public LocalTime getLiveTime() {
-		return liveTime;
-	}
-
-	public void setLiveTime(LocalTime liveTime) {
-		this.liveTime = liveTime;
-	}
 
 	public String getLiveLink() {
 		return liveLink;

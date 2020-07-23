@@ -1,6 +1,6 @@
 package com.gabriel.agendalive.document.service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +17,13 @@ public class LiveService {
 	@Autowired
 	LiveRepository liveRepository;
 
-	public Page<LiveDocument> findAll(Pageable pageable, String date) {
-		if (date != null) {
-			return liveRepository.findByLiveDate(LocalDate.parse(date), pageable);
+	public Page<LiveDocument> findAll(Pageable pageable, String flag) {
+		if (flag != null && flag.equals("next")) {
+			return liveRepository.findByLiveDateAfter(LocalDateTime.now(), pageable);
+		} else if (flag != null && flag.equals("previous")) {
+			return liveRepository.findByLiveDateBefore(LocalDateTime.now(), pageable);
 		} else {
-			//return liveRepository.findAll(pageable);
-			return liveRepository.findByLiveDateGreaterThan(LocalDate.now().minusDays(1), pageable);
+			return liveRepository.findAll(pageable);
 		}
 	}
 
